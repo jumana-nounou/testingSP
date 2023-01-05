@@ -1,0 +1,27 @@
+{
+	"matchNumber": 96,
+	"roundNumber": 2,
+	"dateUtc": "2022-11-20T00:00:00.000+00:00",
+	"location": "Mannonies house",
+	"availability": {
+		"category1": {
+			"available": 5,
+			"pending": 2,
+			"price": 75
+		},
+		"category2": {
+			"available": 10,
+			"pending": 5,
+			"price": 100
+		},
+		"category3": {
+			"available": 87,
+			"pending": 44,
+			"price": 125
+		}
+	},
+	"homeTeam": "Qatar",
+	"awayTeam": "Egypt",
+	"group": "A",
+	"_id": "63b5f2ec9e7f690840b25d0d"
+}

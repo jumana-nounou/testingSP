@@ -1,0 +1,53 @@
+{
+    "data":[{
+        "matchNumber": 1,
+        "roundNumber":3,
+        "dateUtc": "2022-11-20T00:00:00.000+00:00",
+        "location": "Mannonies house",
+        "availability": {
+          "category1": {
+            "available":5,
+            "pending": 2,
+            "price": 75
+          },
+          "category2": {
+            "available":10,
+            "pending": 5,
+            "price": 100
+          },
+          "category3": {
+            "available": 87,
+            "pending":44,
+            "price": 125
+          }
+        },
+        "homeTeam": "Qatar",
+        "awayTeam": "Egypt",
+        "group": "A"
+    },{
+        "matchNumber": 4,
+        "roundNumber":2,
+        "dateUtc": "2022-12-20T00:00:00.000+00:00",
+        "location": "Jo's house",
+        "availability": {
+          "category1": {
+            "available":5,
+            "pending": 2,
+            "price": 75
+          },
+          "category2": {
+            "available":10,
+            "pending": 5,
+            "price": 100
+          },
+          "category3": {
+            "available": 87,
+            "pending":44,
+            "price": 125
+          }
+        },
+        "homeTeam": "Qatar",
+        "awayTeam": "Egypt",
+        "group": "A"
+    }]
+}
