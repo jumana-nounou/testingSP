@@ -23,8 +23,14 @@ async function patchPendingTicket(matchNumber, categoryNo, pending) {
     .then(({ data }) => data)
     .catch((e) => null);
 }
-
+async function postMasterlist(matchNumber, categoryNo, pending) {
+  return api
+    .patch(`${SHOP_INFO}/pendingTicket/${matchNumber}/${categoryNo}/${pending}`)
+    .then(({ data }) => data)
+    .catch((e) => null);
+}
 module.exports = {
+  postMasterlist,
   patchPendingTicket,
   // patchCancelled,
   // patchReserved,

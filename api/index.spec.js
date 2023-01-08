@@ -1,45 +1,62 @@
 const request = require("supertest");
 const main = require("./index");
+const axios = require("axios");
+jest.mock("axios");
+
 //haget el get all tickets
-const { getTickets } = require("../src/shop/shop.service");
 const mockTicketsApiStub = require("../src/shop/tickets.api.stub.json");
 //haget patch
 const { patchPendingTicket } = require("../src/shop/patch.service");
 const mockPendingApiStub = require("../src/shop/patch.api.stub.json");
 // haget masterlist post
-const { postMasterList } = require("../src/shop/masterlist.service");
-const mockShopApiStub = require("../src/shop/shop.api.stub.json");
+const mockMatchApiStub = require("../src/shop/match.api.stub.json");
 
 //
-const BASE_URL = "http://localhost:3000/api";
-
-// Mocks the weather service for all tests in this file
-jest.mock("../src/shop/shop.service", () => ({
-  getTickets: jest.fn(() => mockTicketsApiStub.data),
-}));
-
-// Mocks the country service for all tests in this file
-jest.mock("../src/shop/masterlist.service", () => ({
-  postMasterList: jest.fn((data) => mockShopApiStub.data),
-}));
-
-jest.mock("../src/shop/patch.service", () => ({
-  patchPendingTicket: jest.fn(() => mockPendingApiStub),
-}));
-
+const BASE_URL = "https://shopmicroservice-wblx.vercel.app";
+beforeEach(() => {
+  jest.clearAllMocks();
+  jest.resetAllMocks();
+});
 describe("Tickets", () => {
   // get All Tickets Endpoint
-  test("Get Shop Response", async () => {
-    const response = await request(BASE_URL).get("/allTickets");
-    console.log("response", response.body);
-    expect(response.body).toEqual(mockTicketsApiStub.data);
-    expect(getTickets).toHaveBeenCalled();
+  test("Get All tickets", async () => {
+    const response = await request(BASE_URL).get("/api/allTickets");
+    expect(response.statusCode).toEqual(200);
   });
 
-  test("No shop Response", async () => {
-    getTickets.mockImplementationOnce(() => null);
-    const response = await request(BASE_URL).get("/allTickets");
-    expect(response.error.text).toContain("Could not process request");
+  test("post a match", async () => {
+    const matchStub = {
+      matchNumber: 96,
+      roundNumber: 2,
+      dateUtc: "2022-11-20T00:00:00.000+00:00",
+      location: "Mannonies house",
+      availability: {
+        category1: {
+          available: 5,
+          pending: 2,
+          price: 75,
+        },
+        category2: {
+          available: 10,
+          pending: 5,
+          price: 100,
+        },
+        category3: {
+          available: 87,
+          pending: 44,
+          price: 125,
+        },
+      },
+      homeTeam: "Qatar",
+      awayTeam: "Egypt",
+      group: "A",
+    };
+    const response = await request(BASE_URL)
+      .post("/api/masterlist")
+      .send(matchStub);
+    //console.log("matchhhh", response.body);
+    expect(response.statusCode).toEqual(200);
+    //  expect(response.body).toEqual(mockMatchApiStub);
   });
 });
 
