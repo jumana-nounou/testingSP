@@ -82,10 +82,10 @@ describe("insert", () => {
   it("should insert a doc into collection", async () => {
     const shop = db.collection("Shop");
 
-    const mockShop = { _id: "3", matchNumber: 47 };
+    const mockShop = { _id: "60", matchNumber: 47 };
     await shop.insertOne(mockShop);
 
-    const insertedTicket = await shop.findOne({ _id: "3" });
+    const insertedTicket = await shop.findOne({ _id: "60" });
     expect(insertedTicket).toEqual(mockShop);
   });
 });

@@ -58,6 +58,22 @@ describe("Tickets", () => {
     expect(response.statusCode).toEqual(200);
     //  expect(response.body).toEqual(mockMatchApiStub);
   });
+
+  test("patch a match", async () => {
+    const updateTicketStub = {
+      matchNumber: 1,
+      categoryNo: 1,
+      pending: 2,
+    };
+    const response = await request(BASE_URL)
+      .patch(
+        `/api/pendingTicket/${updateTicketStub.matchNumber}/${updateTicketStub.categoryNo}/${updateTicketStub.pending}`
+      )
+      .send(updateTicketStub);
+    //console.log("matchhhh", response.body);
+    expect(response.body.message).toEqual(mockPendingApiStub.data.message);
+    //  expect(response.body).toEqual(mockMatchApiStub);
+  });
 });
 
 // describe("Patch status ttttttttt", () => {
